@@ -1,6 +1,6 @@
 from . import db
 from .models import User
-from flask import Blueprint, render_template, flash, request
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_user
 
 auth = Blueprint('auth', __name__)
@@ -27,6 +27,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
         flash('Account created!')
+        return redirect(url_for('routes.home'))
     return render_template('signup.html')
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -39,5 +40,6 @@ def login():
                 return render_template('login.html')
             login_user(user)
             flash('Logged in succesfully')
+            return redirect(url_for('routes.home'))
         flash('Email not registered for account')
     return render_template('login.html')
