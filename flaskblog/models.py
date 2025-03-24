@@ -1,5 +1,9 @@
-from . import db
+from . import db, login_manager
 from datetime import datetime
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=user_id).first()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
