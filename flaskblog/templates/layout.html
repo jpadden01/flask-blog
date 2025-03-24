@@ -23,7 +23,7 @@
                             <a href="#" class="nav-item nav-link text-info">About</a>
                             <a href="{{ url_for('auth.login') }}" class="nav-item nav-link text-success-emphasis">Log In</a>
                             <a href="{{ url_for('auth.signup' )}}" class="nav-item nav-link text-success-emphasis">Sign Up</a>
-                            <a href="#" class="btn btn-outline-danger mx-1">Log Out</a>
+                            <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger mx-1">Log Out</a>
                         </div>
                     </div>
                 </div>

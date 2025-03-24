@@ -1,7 +1,7 @@
 from . import db
 from .models import User
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 auth = Blueprint('auth', __name__)
 
@@ -27,6 +27,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
         flash('Account created!')
+        login_user(user)
         return redirect(url_for('routes.home'))
     return render_template('signup.html')
 
@@ -43,3 +44,8 @@ def login():
             return redirect(url_for('routes.home'))
         flash('Email not registered for account')
     return render_template('login.html')
+
+@auth.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
