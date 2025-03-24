@@ -1,6 +1,7 @@
 from . import db
 from .models import User
 from flask import Blueprint, render_template, flash, request
+from flask_login import login_user
 
 auth = Blueprint('auth', __name__)
 
@@ -28,6 +29,15 @@ def signup():
         flash('Account created!')
     return render_template('signup.html')
 
-@auth.route('/login')
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        user = User.query.filter_by(email=request.form.get('email')).first()
+        if user:
+            if user.password != request.form.get('password'):
+                flash('Incorrect password')
+                return render_template('login.html')
+            login_user(user)
+            flash('Logged in succesfully')
+        flash('Email not registered for account')
     return render_template('login.html')
