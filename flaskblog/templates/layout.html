@@ -19,11 +19,15 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navCollapse">
                         <div class="navbar-nav">
-                            <a href="" class="navbar-brand text-primary">Home</a>
-                            <a href="#" class="nav-item nav-link text-info">About</a>
-                            <a href="{{ url_for('auth.login') }}" class="nav-item nav-link text-success-emphasis">Log In</a>
-                            <a href="{{ url_for('auth.signup' )}}" class="nav-item nav-link text-success-emphasis">Sign Up</a>
-                            <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger mx-1">Log Out</a>
+                            <a href="" class="navbar-brand text-primary">FlaskBlog</a>
+                            {% if current_user.is_authenticated %}
+                                <a href="#" class="nav-item nav-link text-info">About</a>
+                                <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger mx-1">Log Out</a>
+                            {% else %}
+                                <a href="#" class="nav-item nav-link text-info">About</a>
+                                <a href="{{ url_for('auth.login') }}" class="nav-item nav-link text-success-emphasis">Log In</a>
+                                <a href="{{ url_for('auth.signup' )}}" class="nav-item nav-link text-success-emphasis">Sign Up</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
