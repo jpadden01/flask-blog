@@ -32,6 +32,12 @@
                     </div>
                 </div>
             </nav>
+
+            {% if get_flashed_messages() %}
+                {% for message in get_flashed_messages() %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
         </header>
 
         <main>
