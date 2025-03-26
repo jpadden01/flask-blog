@@ -9,13 +9,13 @@ auth = Blueprint('auth', __name__)
 def signup():
     if request.method == 'POST':
         if User.query.filter_by(username=request.form.get('username')).first():
-            flash('Username taken')
+            flash('Username taken', category='danger')
             return render_template('signup.html')
         if User.query.filter_by(email=request.form.get('email')).first():
-            flash('Email already in use')
+            flash('Email already in use', category='danger')
             return render_template('signup.html')
         if request.form.get('password') != request.form.get('password-confirm'):
-            flash('Passwords do not match')
+            flash('Passwords do not match', category='danger')
             return render_template('signup.html')
         user = User(
             username=request.form.get('username'),
@@ -26,7 +26,7 @@ def signup():
         )
         db.session.add(user)
         db.session.commit()
-        flash('Account created!')
+        flash('Account created!', category='success')
         login_user(user)
         return redirect(url_for('routes.home'))
     return render_template('signup.html')
@@ -37,12 +37,12 @@ def login():
         user = User.query.filter_by(email=request.form.get('email')).first()
         if user:
             if user.password != request.form.get('password'):
-                flash('Incorrect password')
+                flash('Incorrect password', category='danger')
                 return render_template('login.html')
             login_user(user)
-            flash('Logged in succesfully')
+            flash('Logged in succesfully', category='success')
             return redirect(url_for('routes.home'))
-        flash('Email not registered for account')
+        flash('Email not registered for account', category='warning')
     return render_template('login.html')
 
 @auth.route('/logout')
