@@ -9,3 +9,5 @@ def home():
         flash('Please log in first', category='warning')
         return redirect(url_for('auth.login'))
     return render_template('home.html')
+
+# TODO: Create route to write posts.
