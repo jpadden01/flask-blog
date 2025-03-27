@@ -6,6 +6,6 @@ routes = Blueprint('routes', __name__)
 @routes.route('/')
 def home():
     if not current_user.is_authenticated:
-        flash('Please log in first')
+        flash('Please log in first', category='warning')
         return redirect(url_for('auth.login'))
     return render_template('home.html')
