@@ -12,7 +12,6 @@
 
     <body>
         <header>
-            <!-- TODO: Create link to post route -->
             <nav class="navbar navbar-expand-md bg-body-secondary border-bottom border-primary-subtle">
                 <div class="container">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +22,7 @@
                             <a href="{{ url_for('routes.home') }}" class="navbar-brand text-primary">FlaskBlog</a>
                             {% if current_user.is_authenticated %}
                                 <a href="#" class="nav-item nav-link text-info">About</a>
+                                <a href="{{ url_for('routes.post') }}" class="btn btn-outline-info mx-1">New post</a>
                                 <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger mx-1">Log Out</a>
                             {% else %}
                                 <a href="#" class="nav-item nav-link text-info">About</a>
