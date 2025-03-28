@@ -23,5 +23,5 @@ def post():
         db.session.add(post)
         db.session.commit()
         flash('Post created', category='success')
-        return redirect('routes.home')
+        return redirect(url_for('routes.home'))
     return render_template('post.html')
