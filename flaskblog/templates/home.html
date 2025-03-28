@@ -1,5 +1,10 @@
 {% extends 'layout.html' %}
 {% block content %}
 <h1>Home Page</h1>
-<!-- TODO: Display a feed of posts on home page -->
+{% for post in posts %}
+    <div class="card container my-3 bg-body-tertiary border-primary-subtle">
+        <h3 class="card-title">{{ post.title }} <small class="text-muted">- {{ post.author.username }}</small></h3>
+        <p class="card-text">{{ post.content }}</p>
+    </div>
+{% endfor %}
 {% endblock %}

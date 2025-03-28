@@ -9,7 +9,8 @@ def home():
     if not current_user.is_authenticated:
         flash('Please log in first', category='warning')
         return redirect(url_for('auth.login'))
-    return render_template('home.html')
+    posts = Post.query.all()
+    return render_template('home.html', posts=posts)
 
 @login_required
 @routes.route('/post', methods=['GET', 'POST'])
