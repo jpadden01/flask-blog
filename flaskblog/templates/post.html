@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form method="POST">
+    <legend>Create Post</legend>
+
+    <label for="title" class="form-label">Title</label>
+    <input type="text" name="title" maxlength="250" class="form-control">
+
+    <label for="content" class="form-label">Content</label>
+    <textarea name="content" class="form-control" rows="15"></textarea>
+
+    <button type="submit" class="btn btn-primary my-3">Post</button>
+</form>
+{% endblock %}
