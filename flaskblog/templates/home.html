@@ -2,8 +2,8 @@
 {% block content %}
 <h1>Home Page</h1>
 {% for post in posts %}
-    <div class="card container my-3 bg-body-tertiary border-primary-subtle">
-        <h3 class="card-title">{{ post.title }} <small class="text-muted">- {{ post.author.username }}</small></h3>
+    <div class="card container my-3 bg-body-tertiary border-primary-subtle p-3">
+        <h3 class="card-title border-bottom border-2">{{ post.title }} <small class="text-muted">- {{ post.author.username }}</small></h3>
         <p class="card-text">{{ post.content }}</p>
     </div>
 {% endfor %}
